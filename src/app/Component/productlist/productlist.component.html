@@ -1,0 +1,70 @@
+<div class="card fs-5">
+    <div class="card-header"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+            class="bi bi-bag-check-fill" viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+                d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0zm-.646 5.354a.5.5 0 0 0-.708-.708L7.5 10.793 6.354 9.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z" />
+        </svg>
+        Ecommerce Products
+    </div>
+    <div class="card-body row">
+        <div class="col-3">
+            <input class="form-control me-2" type="search" placeholder="Search Product" [(ngModel)]="searchPrd" aria-label="Search">
+
+        </div>
+        <div class="col-9">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    Category
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dropdown-item" href="#">Men</a></li>
+                    <li><a class="dropdown-item" href="#">Women</a></li>
+                </ul>
+                <a href="#" class="btn btn-primary mx-5" routerLink="/add">Add Product</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+<br>
+<table class="table">
+    <thead>
+        <tr class="bg-dark text-light">
+            <th scope="col">ID</th>
+            <th scope="col">IMAGE</th>
+            <th scope="col">NAME</th>
+            <th scope="col">CATEGORY</th>
+            <th scope="col">PRICE</th>
+            <th scope="col">QUANTITY</th>
+            <th scope="col">CREATED DATE</th>
+            <th scope="col">STATUS</th>
+            <th scope="col">ACTION</th>
+
+
+
+        </tr>
+    </thead>
+    <tbody>
+        <ng-container *ngFor="let prd of prdList | filter : searchPrd">
+            <tr>
+                <td [id]="prd.eventId">{{prd.eventId | uppercase }}</td>
+                <td><img src="{{prd.img}}" style="width: 4rem;"></td>
+                <td>{{prd.name | uppercase}}</td>
+                <td>{{prd.category | uppercase}}</td>
+                <td>{{prd.price }}$</td>
+                <td>{{prd.quantity }}</td>
+                <td>{{prd.date | uppercase}}</td>
+                <td>{{prd.status==true?'Avialable':'Out Of Stock' | uppercase}}</td>
+                <td>
+                    <div>
+                        <button class="btn btn-secondary mx-2" (click)="updateItem(prd.eventId)">Update</button>
+                        <button class="btn btn-danger mx-2" (click)="deleteItem(prd.eventId)">Delete</button>
+                    </div>
+                </td>
+
+
+            </tr>
+        </ng-container>
+    </tbody>
+</table>

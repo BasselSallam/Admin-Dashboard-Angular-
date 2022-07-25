@@ -1,0 +1,150 @@
+<div class="container-fluid">
+    <div class="container">
+      <p class="h5" style="color: #e16123">USER PROFILE</p>
+      <nav
+        style="
+          --bs-breadcrumb-divider: url(
+            &#34;data:image/svg + xml,
+            %3Csvgxmlns='http://www.w3.org/2000/svg'width='8'height='8'%3E%3Cpathd='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z'fill='%236c757d'/%3E%3C/svg%3E&#34;
+          );
+        "
+        aria-label="breadcrumb"
+      >
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Extra Pages</li>
+          <li class="breadcrumb-item active" aria-current="page">Profile</li>
+        </ol>
+      </nav>
+      <ng-container *ngFor="let data of userDataList">
+        <section class="row">
+          <div class="col-8">
+            <div class="card mb-3">
+              <img
+                src="https://static.vecteezy.com/system/resources/previews/005/424/632/non_2x/night-sky-background-with-stars-and-mountains-free-vector.jpg"
+                class="card-img-top"
+                style="height: 12rem"
+                alt="cover image"
+              />
+              <div class="card-img-overlay">
+                <div class="user">
+                  <div class="profile">
+                    <img
+                      src="https://media.creativemornings.com/uploads/user/avatar/49419/Bechtel_Profile_Square.jpg"
+                      class="rounded-circle"
+                    />
+                  </div>
+                  <div class="d-flex justify-content-end align-items-end">
+                    <div class="d-grid gap-2 d-md-block mb-1">
+                      <button
+                        class="btn mx-2 text-light"
+                        style="background-color: #2bb3c0"
+                        type="button"
+                      >
+                        <i class="bi bi-plus-lg"></i> FOLLOW
+                      </button>
+                      <button
+                        class="btn text-light"
+                        style="background-color: #2bb3c0"
+                        type="button"
+                      >
+                        <i class="bi bi-chat-fill"></i> MESSAGE
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="row d-flex">
+                  <h5 class="card-title mt-5 col-5">{{ data.userName }}</h5>
+                  <div class="col-2 text-center">
+                    <p class="h3" style="color: #e16123">23</p>
+                    <p class="text-muted h6">PROJECTS</p>
+                  </div>
+                  <div class="col-2 text-center">
+                    <p class="h3" style="color: #e16123">23</p>
+                    <p class="text-muted h6">FOLLOWERS</p>
+                  </div>
+                  <div class="col-2 text-center">
+                    <p class="h3" style="color: #e16123">23</p>
+                    <p class="text-muted h6">FOLLOWING</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <h6 class="card-header">ACTIVITY FEED</h6>
+              <div>
+                <textarea
+                  class="form-control"
+                  type="text"
+                  placeholder="Share what you've been up to..."
+                  ngModel
+                  #newPost
+                ></textarea>
+              </div>
+              <div class="card-header row">
+                <div class="col-10 mt-2">
+                  <i class="bi bi-image" style="color: grey"></i>
+                  <i class="bi bi-camera-video-fill mx-4" style="color: grey"></i>
+                  <i class="bi bi-lightbulb-fill" style="color: grey"></i>
+                  <i
+                    class="bi bi-question-circle-fill mx-4"
+                    style="color: grey"
+                  ></i>
+                </div>
+                <button
+                  (click)="postData(newPost.value,data.eventId)"
+                  class="btn text-light col-2"
+                  style="background-color: #2bb3c0"
+                >
+                  POST
+                </button>
+              </div>
+            </div>
+            <ng-container *ngFor="let post of userPostsList">
+              <div
+                class="profilePost mt-5 mx-5 mb-2 d-flex border-3 border-bottom"
+              >
+                <img
+                  src="https://media.creativemornings.com/uploads/user/avatar/49419/Bechtel_Profile_Square.jpg"
+                  class="rounded-circle mx-3"
+                  style="width: 3rem; height: 3rem"
+                />
+                <p>
+                  {{ post.postData }}
+                </p>
+              </div>
+              <div>
+                <i class="bi bi-hand-thumbs-up mx-5" style="color: grey">123</i>
+                <i class="bi bi-chat-quote" style="color: grey">123</i>
+              </div>
+            </ng-container>
+          </div>
+          <div class="col-4">
+            <div class="card">
+              <div class="card-header fw-bold">ABOUT ME</div>
+              <div class="card-body">
+                <p class="text-muted">{{ data.aboutME }}</p>
+              </div>
+              <div class="d-flex">
+                <i class="bi bi-briefcase-fill mx-3" style="color: #2bb3c0"></i>
+                <p style="color: #2bb3c0">Occupation</p>
+                <p class="mx-3">{{ data.jobTitle }}</p>
+              </div>
+              <div class="d-flex">
+                <i class="bi bi-balloon-fill mx-3" style="color: #2bb3c0"></i>
+                <p style="color: #2bb3c0">Date of Birth</p>
+                <p class="mx-3">{{ data.birthDate }}</p>
+              </div>
+              <div class="d-flex">
+                <i class="bi bi-phone-fill mx-3" style="color: #2bb3c0"></i>
+                <p style="color: #2bb3c0">Mobile No.</p>
+                <p class="mx-3">{{ data.mobileNo }}</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </ng-container>
+    </div>
+  </div>

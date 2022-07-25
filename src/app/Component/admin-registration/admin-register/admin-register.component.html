@@ -1,0 +1,69 @@
+<div class="vh-100 d-flex">
+    <div class="row w-100 mx-auto my-auto  shadow rounded" style="max-width: 920px;">
+
+        <div class="col-md-6 d-flex flex-column gap-4 justify-content-center">
+            <div class="mx-auto">Logo</div>
+
+            <div class="mx-auto">Create your account</div>
+
+            <form #form="ngForm" (ngSubmit)="Register(form)" class="">
+
+                <div class="input-group w-75 mx-auto mb-3" style="max-width: 300px;">
+                    <div class="input-group-text">X</div>
+                    <input ngModel #Username="ngModel" type="text" class="form-control" name="username" id="username"
+                        placeholder="Username" required="">
+
+                </div>
+                <div class="w-75 mx-auto mb-3 alert alert-danger" style="max-width: 300px;"
+                    [hidden]="Username.valid || Username.untouched">
+                    <small *ngIf="Username.errors?.['required']">Name is required</small>
+
+                </div>
+
+                <div class="input-group w-75 mx-auto mb-3" style="max-width: 300px;">
+                    <div class="input-group-text">X</div>
+                    <input ngModel #Email="ngModel" type="text" class="form-control" name="email" id="email"
+                        placeholder="Email" required email>
+                </div>
+                <div class="alert alert-danger w-75 mx-auto mb-3" style="max-width: 300px;"
+                    [hidden]="Email.valid || Email.untouched">
+                    <small *ngIf="Email.errors?.['required']">Email is required</small>
+                    <small *ngIf="Email.errors?.['email']">Email does not match</small>
+                </div>
+
+
+                <div class="input-group w-75 mx-auto mb-3" style="max-width: 300px;">
+                    <div class="input-group-text">X</div>
+                    <input ngModel #Password="ngModel" type="text" class="form-control" name="password" id="password"
+                        placeholder="Password" required minlength="6">
+                </div>
+                <div class="alert alert-danger w-75 mx-auto mb-3" style="max-width: 300px;"
+                    [hidden]="Password.valid || Password.untouched">
+                    <small *ngIf="Password.errors?.['required']">Password is required</small>
+                    <small *ngIf="Password.errors?.['minlength']">Enter 6 or more characters</small>
+                </div>
+
+                <div class="input-group w-75 mx-auto mb-3 d-flex">
+                    <label class="form-check mx-auto">
+                        <input ngModel #statements="ngModel" type="checkbox" class="form-check-input" id="statements"
+                            required>
+                        <div class="form-check-label">
+                            I agree all statements in <a href="">Terms of service</a>
+                        </div>
+                    </label>
+                </div>
+
+                <div class="d-flex">
+                    <button type="submit" class="btn btn-primary mx-auto" [disabled]="form.invalid">Register</button>
+                </div>
+                <br>
+                <div class="alert alert-danger w-75 mx-auto mb-3" style="max-width: 300px;" [hidden]="!errormessage">
+                    <small *ngIf="errormessage">{{errormessage}}</small>
+
+                </div>
+            </form>
+        </div>
+
+        <div class="col-md-6" style="background-color: rgb(172, 169, 169);"></div>
+    </div>
+</div>

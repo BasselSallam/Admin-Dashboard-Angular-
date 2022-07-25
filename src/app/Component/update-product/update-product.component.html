@@ -1,0 +1,45 @@
+<form #thisForm
+    (ngSubmit)="onSubmit({name:formPrdName.value,quantity:formPrdQuantity.value,price:formPrdPrice.value,img:formPrdImg.value,prdCatID:formPrdCatID.value,category:formPrdCat.value,date:formPrdDate.value})"
+    novalidate>
+    <!-- <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Product ID</label>
+        <input type="number" class="form-control" #formPrdID>
+    </div> -->
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Product name</label>
+        <input type="text" class="form-control" [value]="itemByID.name" #formPrdName>
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Product Quantity</label>
+        <input type="number" class="form-control" [value]="itemByID.quantity" #formPrdQuantity>
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Product Price</label>
+        <input type="number" class="form-control" [value]="itemByID.price" #formPrdPrice>
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Product ImageURL</label>
+        <input type="text" class="form-control" [value]="itemByID.img" #formPrdImg>
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Product Catagory ID</label>
+        <input type="number" class="form-control" [value]="itemByID.prdCatID" #formPrdCatID>
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Production Date</label>
+        <input type="date" class="form-control" #formPrdDate>
+    </div>
+    <div class="mb-3">
+        <label class="form-label" for="exampleInputEmail1">Choose Category: </label>
+        <br>
+        <select [value]="itemByID.category" #formPrdCat>
+            <option>MEN</option>
+            <option>WOMEN</option>
+        </select>
+    </div>
+
+
+
+
+    <button type="submit" class="btn btn-primary">Update Product</button>
+</form>
