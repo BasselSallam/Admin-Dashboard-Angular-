@@ -9,7 +9,7 @@ import { collection } from '@angular/fire/firestore';
 export class FirestoreHandlerService {
   items: Observable<any[]>
   constructor(public firestore: AngularFirestore) {
-    this.items = firestore.collection('Products').valueChanges({ idField: 'eventId' });
+    this.items = firestore.collection('Mobile').valueChanges({ idField: 'eventId' });
   }
 
   getItems() {
@@ -17,23 +17,23 @@ export class FirestoreHandlerService {
   }
 
   getItemByID(id:string){
-    return this.firestore.doc(`Products/${id}`).valueChanges();
+    return this.firestore.doc(`Mobile/${id}`).valueChanges();
   }
     
 
-  addData(obj:{}) {
-    const create = this.firestore.collection('Products')
-    create.add(obj)
+  addData(obj:{},id: string) {
+    const create = this.firestore.collection('Mobile').doc(id)
+    create.set(obj)
   }
 
   updateData(id: string , value:{}) {
-    const create = this.firestore.collection('Products');
+    const create = this.firestore.collection('Mobile');
     create.doc(id).update(value)
   }
 
 
   deleteData(id: string) {
-    const create = this.firestore.collection('Products');
+    const create = this.firestore.collection('Mobile');
     create.doc(id).delete()
 
   }

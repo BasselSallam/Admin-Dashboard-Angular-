@@ -10,28 +10,28 @@ import { AuthService } from './../../../Services/auth.service';
   styleUrls: ['./admin-register.component.scss']
 })
 export class AdminRegisterComponent implements OnInit {
-errormessage:string=''
+  errormessage: string = ''
 
-  constructor(private AuthService:AuthService,private UsersService:UsersService,private Router:Router) { }
-  
-  Register(form:any){
-let info:Iuser=form.value
-console.log(info)
-this.AuthService.Register(info.email,info.password)
-.then(x=>{
-  console.log(x);
-  this.errormessage=''
-  this.UsersService.AddUser(x?.user?.uid,info.username).then(()=>{
-    this.Router.navigate(['/admin/login'])
-  })
-})
-.catch(e=>{
-  console.log(e);
-  this.errormessage=e.message
-})
+  constructor(private AuthService: AuthService, private UsersService: UsersService, private Router: Router) { }
+
+  Register(form: any) {
+    let info: Iuser = form.value
+    console.log(info)
+    this.AuthService.Register(info.email, info.password)
+      .then(fire => {
+        console.log(fire);
+        this.errormessage = ''
+        this.UsersService.AddUser(fire.user!.uid, info.username).then(() => {
+          this.Router.navigate(['/admin/login'])
+        })
+      })
+      .catch(e => {
+        console.log(e);
+        this.errormessage = e.message
+      })
   }
-  
-  
+
+
   ngOnInit(): void {
   }
 

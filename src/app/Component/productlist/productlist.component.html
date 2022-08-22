@@ -8,19 +8,20 @@
     </div>
     <div class="card-body row">
         <div class="col-3">
-            <input class="form-control me-2" type="search" placeholder="Search Product" [(ngModel)]="searchPrd" aria-label="Search">
+            <input class="form-control me-2" type="search" placeholder="Search Product" [(ngModel)]="searchPrd"
+                aria-label="Search">
 
         </div>
         <div class="col-9">
             <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                <!-- <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
                     data-bs-toggle="dropdown" aria-expanded="false">
                     Category
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                     <li><a class="dropdown-item" href="#">Men</a></li>
                     <li><a class="dropdown-item" href="#">Women</a></li>
-                </ul>
+                </ul> -->
                 <a href="#" class="btn btn-primary mx-5" routerLink="/add">Add Product</a>
             </div>
         </div>
@@ -30,32 +31,29 @@
 <br>
 <table class="table">
     <thead>
-        <tr class="bg-dark text-light">
+        <tr class="bg-dark text-light text-center">
             <th scope="col">ID</th>
             <th scope="col">IMAGE</th>
+            <th scope="col">BRAND</th>
             <th scope="col">NAME</th>
-            <th scope="col">CATEGORY</th>
-            <th scope="col">PRICE</th>
-            <th scope="col">QUANTITY</th>
-            <th scope="col">CREATED DATE</th>
-            <th scope="col">STATUS</th>
+            <th scope="col">ORIGINAL PRICE</th>
+            <th scope="col">DISCOUNT</th>
+            <th scope="col">FINAL PRICE</th>
+            <th scope="col">MODEL NUMBER</th>
             <th scope="col">ACTION</th>
-
-
-
         </tr>
     </thead>
     <tbody>
         <ng-container *ngFor="let prd of prdList | filter : searchPrd">
-            <tr>
+            <tr class="text-center">
                 <td [id]="prd.eventId">{{prd.eventId | uppercase }}</td>
                 <td><img src="{{prd.img}}" style="width: 4rem;"></td>
+                <td>{{prd.brand | uppercase}}</td>
                 <td>{{prd.name | uppercase}}</td>
-                <td>{{prd.category | uppercase}}</td>
-                <td>{{prd.price }}$</td>
-                <td>{{prd.quantity }}</td>
-                <td>{{prd.date | uppercase}}</td>
-                <td>{{prd.status==true?'Avialable':'Out Of Stock' | uppercase}}</td>
+                <td>{{prd.price}}</td>
+                <td>{{prd.discount}}</td>
+                <td>{{prd.price - (prd.price*(prd.discount/100))}}</td>
+                <td>{{prd.mNumber}}</td>
                 <td>
                     <div>
                         <button class="btn btn-secondary mx-2" (click)="updateItem(prd.eventId)">Update</button>

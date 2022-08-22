@@ -9,19 +9,20 @@ import { AuthService } from './../../Services/auth.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-userDataList : any[] = []
-  constructor(private AuthService: AuthService , private router:Router,public userData: UserdataService) { }
+  userDataList: any[] = []
+  constructor(private AuthService: AuthService, private router: Router, public userData: UserdataService) { }
 
   ngOnInit(): void {
+
     this.userData.getData().subscribe(data => {
       this.userDataList = data
-      // console.log(data)
+
     });
   }
   Logout() {
 
-    this.AuthService.Logout().then(() => {})
-    this.router.navigate(['admin/login']) 
+    this.AuthService.Logout().then(() => { })
+    this.router.navigate(['admin/login'])
 
   }
 }

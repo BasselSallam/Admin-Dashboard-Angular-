@@ -1,45 +1,136 @@
-<form #thisForm
-    (ngSubmit)="onSubmit({name:formPrdName.value,quantity:formPrdQuantity.value,price:formPrdPrice.value,img:formPrdImg.value,prdCatID:formPrdCatID.value,category:formPrdCat.value,date:formPrdDate.value})"
-    novalidate>
-    <!-- <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">Product ID</label>
-        <input type="number" class="form-control" #formPrdID>
-    </div> -->
-    <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">Product name</label>
-        <input type="text" class="form-control" #formPrdName>
-    </div>
-    <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">Product Quantity</label>
-        <input type="number" class="form-control" #formPrdQuantity>
-    </div>
-    <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">Product Price</label>
-        <input type="number" class="form-control" #formPrdPrice>
-    </div>
-    <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">Product ImageURL</label>
-        <input type="text" class="form-control" #formPrdImg>
-    </div>
-    <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">Product Catagory ID</label>
-        <input type="number" class="form-control" #formPrdCatID>
-    </div>
-    <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">Production Date</label>
-        <input type="date" class="form-control" #formPrdDate>
-    </div>
-    <div class="mb-3">
-        <label class="form-label" for="exampleInputEmail1">Choose Category: </label>
-        <br>
-        <select #formPrdCat>
-            <option>MEN</option>
-            <option>WOMEN</option>
-        </select>
-    </div>
+<form #thisForm="ngForm" (ngSubmit)="onSubmit({
+    brand:formPrdBrand.value,
+    name:formPrdName.value,
+    description:formPrdDescription.value,
+    price:formPrdPrice.value,
+    img:formPrdImg.value,
+    mNumber:formPrdModelNumber.value,
+    discount:formPrdDiscount.value,
+    colors:colorsList,
+    storage:storageList,
+     highlights:highlightsList
+},formPrdID.value)">
+    <div class="row container-fluid">
+        <div class="col-6">
+            <div class="mb-3">
+                <label class="form-label">Product ID</label><span style="color:red;">*</span>
+                <input type="text" class="form-control" ngModel #formPrdID="ngModel" name="formPrdID" required>
+                <div class="w-100 mx-auto text-center" style="height: 3px;color: red;"
+                    [hidden]="formPrdID.valid || formPrdID.untouched">
+                    <small *ngIf="formPrdID.errors?.['required']">Product ID is required</small>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Product Price</label><span style="color:red;">*</span>
+                <input type="number" class="form-control" #formPrdPrice="ngModel" name="formPrdPrice" ngModel required>
+                <div class="w-100 mx-auto text-center" style="height: 3px;color: red;"
+                    [hidden]="formPrdPrice.valid || formPrdPrice.untouched">
+                    <small *ngIf="formPrdPrice.errors?.['required']">Product Price is required</small>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Product Model-Number</label><span style="color:red;">*</span>
+                <input type="text" class="form-control" #formPrdModelNumber="ngModel" name="formPrdModelNumber" ngModel
+                    required>
+                <div class="w-100 mx-auto text-center" style="height: 3px;color: red;"
+                    [hidden]="formPrdModelNumber.valid || formPrdModelNumber.untouched">
+                    <small *ngIf="formPrdModelNumber.errors?.['required']">Product Model-Number is required</small>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Product Colors</label>
+                <span class="float-end" style="font-size: 0.8rem;">
+                    <b> Current Storage </b>[
+                    <span *ngFor="let color of colorsList">
+                        <span> {{color}},</span>
+                    </span>
+                    <span> ]</span>
+                </span>
+                <div class="d-flex justify-content-between">
+                    <input style="width: 80%;" type="text" class="form-control" name="color"
+                        [(ngModel)]="resetColorValue">
+                    <button style="width: 18%;" type="button" class="btn btn-dark"
+                        (click)="pushColors(resetColorValue)">Add Color</button>
+                </div>
 
-
-
-
-    <button type="submit" class="btn btn-primary">Add Product</button>
+            </div>
+        </div>
+        <div class='col-6'>
+            <div class="mb-3">
+                <label class="form-label">Product Brand</label><span style="color:red;">*</span>
+                <input type="text" class="form-control" #formPrdBrand="ngModel" name="formPrdBrand" ngModel required>
+                <div class="w-100 mx-auto text-center" style="height: 3px;color: red;"
+                    [hidden]="formPrdBrand.valid || formPrdBrand.untouched">
+                    <small *ngIf="formPrdBrand.errors?.['required']">Product Brand is required</small>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Product Name</label><span style="color:red;">*</span>
+                <input type="text" class="form-control" #formPrdName="ngModel" name="formPrdName" ngModel required>
+                <div class="w-100 mx-auto text-center" style="height: 3px;color: red;"
+                    [hidden]="formPrdName.valid || formPrdName.untouched">
+                    <small *ngIf="formPrdName.errors?.['required']">Product Name is required</small>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Product Discount</label><span style="color:red;">*</span>
+                <input type="number" class="form-control" #formPrdDiscount="ngModel" name="formPrdDiscount" ngModel
+                    required>
+                <div class="w-100 mx-auto text-center" style="height: 3px;color: red;"
+                    [hidden]="formPrdDiscount.valid || formPrdDiscount.untouched">
+                    <small *ngIf="formPrdDiscount.errors?.['required']">Product Discount is required</small>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Product Storage</label>
+                <span class="float-end" style="font-size: 0.8rem;">
+                    <b> Current Storage </b>[
+                    <span *ngFor="let storage of storageList">
+                        <span> {{storage}},</span>
+                    </span>
+                    <span> ]</span>
+                </span>
+                <div class="d-flex justify-content-between">
+                    <input style="width: 80%;" type="text" class="form-control" name="storage"
+                        [(ngModel)]="resetStorageValue">
+                    <button style="width: 18%;" type="button" class="btn btn-dark"
+                        (click)="pushStorage(resetStorageValue)">Add Storage </button>
+                </div>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Product ImageURL</label><span style="color:red;">*</span>
+            <input type="text" class="form-control" #formPrdImg="ngModel" name="formPrdImg" ngModel required>
+            <div class="w-100 mx-auto text-center text-center" style="height: 3px;color: red;"
+                [hidden]="formPrdImg.valid || formPrdImg.untouched">
+                <small *ngIf="formPrdImg.errors?.['required']">Product Image is required</small>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Product Description</label><span style="color:red;">*</span>
+            <input style="height:10rem;" type="text" class="form-control" #formPrdDescription="ngModel"
+                name="formPrdBrand" ngModel required>
+            <div class="w-100 mx-auto text-center" style="height: 3px;color: red;"
+                [hidden]="formPrdBrand.valid || formPrdBrand.untouched">
+                <small *ngIf="formPrdBrand.errors?.['required']">Product Description is required</small>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Product Highlights</label>
+            <div class="container-fluid my-3" style="font-size: 0.8rem;">
+                <b> Current Highlights: </b>
+                <ul class="mt-3" *ngFor="let highlight of highlightsList">
+                    <li> {{highlight}}</li>
+                </ul>
+            </div>
+            <div class="d-flex justify-content-between">
+                <input style="width: 80%;" type="text" class="form-control" name="highlight"
+                    [(ngModel)]="resetHighlightValue">
+                <button style="width: 18%;" type="button" class="btn btn-dark" type="button"
+                    (click)="pushHighlights(resetHighlightValue)">Add Hightlight </button>
+            </div>
+        </div>
+        <button type="submit" style="width: 20%;margin-left: 0.7%;" class="btn btn-primary my-5"
+            [disabled]="thisForm.invalid">Add Product</button>
+    </div>
 </form>

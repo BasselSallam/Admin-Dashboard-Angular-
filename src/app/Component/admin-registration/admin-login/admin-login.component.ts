@@ -25,5 +25,6 @@ export class AdminLoginComponent implements OnInit {
   switch(){
     this.Router.navigateByUrl('admin/register')
   }
+  
 
 }

@@ -1,50 +1,39 @@
 <div class="vh-100 d-flex">
     <div class="row w-100 mx-auto my-auto h-75 shadow rounded" style="max-width: 920px;">
 
-        <div class="col-md-6" style="background-color: rgb(172, 169, 169);"></div>
+        <div class="col-md-6 d-flex justify-content-center align-items-center" style="background-color: #FEEE00;">
+            <div class="mx-auto"><img src="https://f.nooncdn.com/s/app/com/noon/design-system/logos/noon-logo-en.svg"/></div>
+        </div>
 
         <div class="col-md-6 d-flex flex-column gap-4 justify-content-center">
-            <div class="mx-auto">Logo</div>
-
+            <!-- <div class="mx-auto"><img src="https://f.nooncdn.com/s/app/com/noon/design-system/logos/noon-logo-en.svg"/></div> -->
             <div class="mx-auto">Login to your account</div>
-
             <form #form="ngForm" (ngSubmit)="Login(form)" class="">
 
-                <!-- <div class="input-group w-75 mx-auto mb-3" style="max-width: 300px;">
-                    <div class="input-group-text">X</div>
-                    <input type="text" class="form-control" name="username" id="username" placeholder="Username">
-                </div> -->
 
                 <div class="input-group w-75 mx-auto mb-3" style="max-width: 300px;">
-                    <div class="input-group-text">X</div>
+                    <div class="input-group-text"><img src="https://f.nooncdn.com/s/app/com/noon/design-system/creative-icons/account-profile.svg"/></div>
                     <input ngModel #Email="ngModel" type="text" class="form-control" name="email" id="email"
                         placeholder="Email" required email>
                 </div>
                 <div class="alert alert-danger w-75 mx-auto mb-3" style="max-width: 300px;"
                     [hidden]="Email.valid || Email.untouched">
                     <small *ngIf="Email.errors?.['required']">Email is required</small>
-                    <!-- <small *ngIf="Email.errors?.['email']">Email does not match</small> -->
+                    <small *ngIf="Email.errors?.['email']">Example@test.com</small>
+                    
                 </div>
 
                 <div class="input-group w-75 mx-auto mb-3" style="max-width: 300px;">
-                    <div class="input-group-text">X</div>
+                    <div class="input-group-text"><img src="https://f.nooncdn.com/s/app/com/noon/design-system/creative-icons/account-preferences.svg"/></div>
                     <input ngModel #Password="ngModel" type="text" class="form-control" name="password" id="password"
                         placeholder="Password" required minlength="6">
                 </div>
                 <div class="alert alert-danger w-75 mx-auto mb-3" style="max-width: 300px;"
                     [hidden]="Password.valid || Password.untouched">
                     <small *ngIf="Password.errors?.['required']">Password is required</small>
-                    <!-- <small *ngIf="Password.errors?.['minlength']">Enter 6 or more characters</small> -->
+                    <small *ngIf="Password.errors?.['minlength']">Minimum password length is 6</small>
+                    
                 </div>
-
-                <!-- <div class="input-group w-75 mx-auto mb-3 d-flex">
-                    <label class="form-check mx-auto">
-                        <input type="checkbox" class="form-check-input" id="statements">
-                        <div class="form-check-label">
-                            I agree all statements in <a href="">Terms of service</a>
-                        </div>
-                    </label>
-                </div> -->
 
                 <div class=" row w-75 mx-auto d-flex align-items-center g-3" style="max-width: 300px;">
                     <div class="col-sm-6"><button type="submit" class="btn btn-primary"
@@ -59,9 +48,7 @@
             </form>
 
             <div class="row w-75 mx-auto d-flex justify-content-between align-items-center" style="max-width: 300px;">
-                <!-- <div class="col-3 rounded" style="background-color: black; height: 2px;"></div> -->
-                <!-- <div class="col-6" style="text-align: center;">Or Login with</div> -->
-                <!-- <div class="col-3 rounded" style="background-color: black; height: 2px;"></div> -->
+                
                 <hr>
                 <button class="btn btn-primary" (click)="switch()"> Or Register </button>
 
